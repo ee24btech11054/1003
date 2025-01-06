@@ -147,7 +147,27 @@ Substitute back into $ Y\brak{s} $:
     Y\brak{s} &= \frac{-1}{s + 3} + \frac{1}{s + 2} + \frac{2}{s + 3}\\
     Y\brak{s} &= \frac{1}{s + 3} + \frac{1}{s + 2}.
 \end{align}
-Using the inverse Laplace transform:
+\textbf{Finding the Region of Convergence (ROC):}\\
+Each term in $Y\brak{s}$ contributes a pole:
+The term $\frac{1}{s+3}$ has a pole at $s = -3$, and the term $\frac{1}{s+2}$ has a pole at $s = -2$.Thus, the poles of $Y\brak{s}$ are located at $s = -3$ and $s = -2$.\\\\
+The ROC of a Laplace transform depends on whether the signal is:
+\begin{enumerate}
+    \item \textbf{Right-sided (causal):} The ROC is to the right of the rightmost pole, i.e., $ \text{Re}(s) > -2 .$
+    \item \textbf{Left-sided (anti-causal):} The ROC is to the left of the leftmost pole, i.e., $ \text{Re}(s) < -3 .$
+    \item \textbf{Two-sided:} The ROC lies between the poles, i.e., $-3 < \text{Re}(s) < -2 .$
+\end{enumerate}
+To determine the exact ROC, additional information about the time-domain behavior of the signal is needed:
+\begin{enumerate}
+    \item For a \textbf{causal signal}, the ROC is:
+    $ \text{Re}(s) > -2. $
+    \item For an \textbf{anti-causal signal}, the ROC is:
+    $\text{Re}(s) < -3. $
+    \item For a \textbf{two-sided signal}, the ROC is:
+    $ -3 < \text{Re}(s) < -2. $
+\end{enumerate}
+The ROC depends on the nature of the signal (causal, anti-causal, or two-sided).\\
+In causal systems, The function $y\brak{x}$ depends only on present and past values $\brak{x\geq0}$.
+\\\\Using the inverse Laplace transform:
 \begin{align}
     \mathcal{L}^{-1}\brak{\frac{1}{s + a}} = e^{-ax}.
 \end{align}
@@ -175,7 +195,8 @@ y_2 &= y_1 + h \frac{dy}{dx}\bigg|_{\brak{x_1, y_1}}
 For generating $\brak{n+1}^{th}$ point, 
 \begin{align}
     x_{n+1}&=x_n + h\\
-    y_{n+1}&=y_n + h\times\brak{e^{-2x_n} - 3y_n} 
+    y_{n+1}&=y_n + h\times\brak{e^{-2x_n} - 3y_n} \\
+    y_{n+1}&=y_{n}\brak{1-3h}+he^{-2x_{n}}
 \end{align}
 Repeating this process for a large number of points, we can trace the curve that represents one of the solutions of the Differential Equation.
 To generate the plot, start from an initial point  satisfying \eqref{eq:3}, choose a small value of $h$, and calculate successive points,using the equations mentioned above.
